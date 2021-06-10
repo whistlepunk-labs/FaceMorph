@@ -1,0 +1,28 @@
+Installation
+-----------------------------------------------------
+Requires OpenCV installed with GTK and FMPEG enabled
+Also requires X11 to display from the linux console
+
+enter "cmake ." to build project and then "make" to compile
+
+Execution
+--------------------------
+Run by entering:
+
+./Facemorph [image filename 1] [image filename 2] <a value> <b value> <p value> <point file filename> <number of frames for animation rendering>
+
+The first two command line arguments are mandatory. All previous arguments must be input to use the latter arguments. (eg. enter the filenames, a/b/p values, and then the point file name to run the program with point inputs)
+
+Both images are required to be the same size and will exit if this isn't followed.
+
+A, b, and p values are used in the weight function when calculating the weight of feature points.
+
+Running the script without a pointfile argument will open the GUI. When using the GUI, the user inputs feature points on the left image, 2 at a time, until they are ready to input feature points on the second image. Pressing the green 'next' button while inputting the first set of feature points, and the number of points is even, will allow the user to now input feature points on the next image. The corresponding feature point to input will be lit up in yellow on the left image to let the user know where to put the next point. Once no more yellow points are lit up, users can press the 'next' button to begin the image morph. The 'undo' button will undo the last user input, and will revert to the state of entering the first image's feature points if needed.
+
+Every time the GUI is run, the program will write a 'pointfile' into the ./points directory. These can be reused for running tests or to use different weight values for a better results. The pointfile is saved in terms of filename and number of points. Reapeating the filename and number of points should overwrite the previous file as such.
+
+When inputting the frame number, the program will generate a '.avi' file in the ./animations directory. The number of frames specifies the number of frames in the smooth morphing sequence. Otherwise, when running the program without animation, the program will render the middle frame of the animation sequence.
+
+Everytime the program is run, the output will be saved in ./renders according the the a,b,p,filenames, and number of points. There is a chance files can be overwritten if there is another file with the same specifications.
+
+If there is a chance that a file will be overwritten, execute the program with 'sudo' or else an error value will be returned.
